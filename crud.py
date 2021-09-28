@@ -6,7 +6,7 @@ try:
     conn = sqlite3.connect("bd.db")
     cursor = conn.cursor()
 
-    cursor.execute("INSERT INTO users (tg_id, elo) VALUES (?,?)", ('noi4eg',200))
+    cursor.execute("INSERT OR IGNORE INTO users (tg_id, elo) VALUES (?,?)", ('noi4eg2',200))
 
     users = cursor.execute("SELECT * FROM 'users'")
     print(users.fetchall())
