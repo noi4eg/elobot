@@ -10,7 +10,7 @@ try:
 
     #  выполнение запроса INSERT
     #  TODO закомментить инсерт
-    cursor.execute("INSERT OR IGNORE INTO users (tg_id, elo) VALUES (?,?)", ('noi4eg2',200))
+    #  cursor.execute("INSERT OR IGNORE INTO users (tg_id, elo) VALUES (?,?)", ('noi4eg7',200))
     
     # запрос SELECT 
     users = cursor.execute("SELECT * FROM 'users'")
