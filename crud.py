@@ -2,6 +2,7 @@ import sqlite3
 #что-нибудь
 #что-нибудь №2
 #последний раз епта
+#чек git home
 try:
     #  подключение к БД
     conn = sqlite3.connect("bd.db")
