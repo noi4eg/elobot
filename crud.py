@@ -1,5 +1,6 @@
 import sqlite3
 #что-нибудь
+#что-нибудь №2
 try:
     #  подключение к БД
     conn = sqlite3.connect("bd.db")
