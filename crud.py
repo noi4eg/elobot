@@ -35,9 +35,13 @@ def elo_change(tg_id,elo):
 def leaderbords():
     cursor, conn = bd_start()
     leaders = cursor.execute('SELECT * from users ORDER BY elo DESC')
-    item = leaders.fetchall()
-    #for item in leaders.fetchall():
-    #print (item)
+    end_str = ''
+    place = 1
+    for item in leaders.fetchall():
+        end_str += str(place) + '. ' + item[1] + ' ' + str(item[2]) + '\n'
+        place += 1
+        
+    #print (end_str)
     bd_close(conn)
     return item
 try:
