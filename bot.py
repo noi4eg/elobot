@@ -1,4 +1,5 @@
 import logging
+import crud
 from aiogram import Bot, types
 from aiogram.dispatcher import Dispatcher
 from aiogram.utils import executor
@@ -28,6 +29,10 @@ async def registration(msg: types.Message):
     # ответ реплаем
     await msg.reply(text=('Welcome to the club, buddy. Твой ник {0}, твой ID {1}').format(msg.from_user.full_name, msg.from_user.id), reply=False)
 
+
+@dp.message_handler(commands=['elo'])
+async def send_elo(msg: types.Message):
+    await msg.reply(text=crud.leaderbords(), reply=False)
 
 # @dp.message_handler(content_types=['text'])
 # async def send_messages(msg: types.Message):
