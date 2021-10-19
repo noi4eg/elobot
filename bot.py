@@ -1,6 +1,10 @@
+import logging
 from aiogram import Bot, types
 from aiogram.dispatcher import Dispatcher
 from aiogram.utils import executor
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 # TODO спрятать токен в гитигнор
 TOKEN = "2028789368:AAGJaecJtmyQNu8wpd-zJyxnzpSz-SbPKh4"
@@ -14,14 +18,27 @@ async def send_start(msg: types.Message):
 
 @dp.message_handler(commands=['help'])
 async def send_help(msg: types.Message):
-    await msg.reply(text=('ответ на /help без цитирования'), reply=False)
+    await msg.reply(text=('ответ(реплай) на /help без цитирования'), reply=False)
 
-@dp.message_handler(content_types=['text'])
-async def send_messages(msg: types.Message):
-    if msg.text.lower() == 'привет':
-        await msg.answer('Привет')
-    else:
-        await msg.answer('Напиши "Привет"')
+@dp.message_handler(commands=['reg'])
+async def registration(msg: types.Message):
+    # ответ в личку
+    # await bot.send_message(msg.from_user.id, text="Welcome to the club, buddy")
+    
+    # ответ реплаем
+    await msg.reply(text=('Welcome to the club, buddy. Твой ник {0}, твой ID {1}').format(msg.from_user.full_name, msg.from_user.id), reply=False)
+
+
+# @dp.message_handler(content_types=['text'])
+# async def send_messages(msg: types.Message):
+#     if msg.text.lower() == 'привет':
+#         await msg.answer('Привет')
+#     else:
+#         await msg.answer('Напиши "Привет"')
+
+
+def main():
+    executor.start_polling(dp)
 
 if __name__ == '__main__':
-    executor.start_polling(dp)
+    main()
