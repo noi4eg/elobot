@@ -35,10 +35,11 @@ def elo_change(tg_id,elo):
 def leaderbords():
     cursor, conn = bd_start()
     leaders = cursor.execute('SELECT * from users ORDER BY elo DESC')
-    for item in leaders.fetchall():
-        print (f'{item[1]} {item[2]}')
+    item = leaders.fetchall()
+    #for item in leaders.fetchall():
+    #print (item)
     bd_close(conn)
-
+    return item
 try:
     #conn = sqlite3.connect("bd.db")
     #cursor = conn.cursor()
