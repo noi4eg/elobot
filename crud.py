@@ -51,11 +51,12 @@ def elo_change(tg_id, elo):
 def leaderbords():
     cursor, conn = bd_start()
     leaders = cursor.execute('SELECT * from users ORDER BY elo DESC')
-    end_str = ''
+    end_str = "{:<3} {:<20} {:<15}".format('№','Name','Value') +'\n'
+    
     place = 1
     #print(leaders.fetchall())
     for item in leaders.fetchall():
-        end_str += str(place) + '. ' + item[3] + ' ' + str(item[2]) + '\n'
+        end_str += "{:<3} {:<20} {:<15}".format(str(place), item[3], str(item[2])) + '\n'
         place += 1
 
     #print (end_str)
@@ -81,7 +82,7 @@ try:
     #add_user('123123123','romka', 200)
     #del_user('320362842')
     # elo_change('noi4eg7', 20)
-    leaderbords()
+    #leaderbords()
     #my_elo('noi4eg7')
     pass
     # запрос SELECT 
