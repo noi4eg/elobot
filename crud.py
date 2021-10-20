@@ -51,6 +51,13 @@ def leaderbords():
     # print (end_str)
     bd_close(conn)
     return end_str
+
+def my_elo(tg_id):
+    cursor, conn = bd_start()
+    my_elo_end = cursor.execute('SELECT * FROM users WHERE tg_id = ?',(tg_id,))
+    my_elo_end = my_elo_end.fetchall()
+    bd_close(conn)
+    return f'Хей, {my_elo_end[0][1]}, твой рейтинг = {my_elo_end[0][2]}'
 try:
     # conn = sqlite3.connect("bd.db")
     # cursor = conn.cursor()
@@ -65,6 +72,7 @@ try:
     # del_user('tg_id')
     # elo_change('noi4eg7', 20)
     leaderbords()
+    my_elo('noi4eg7')
 
     # запрос SELECT 
     # users = cursor.execute("SELECT * FROM 'users'")
