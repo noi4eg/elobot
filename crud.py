@@ -82,7 +82,7 @@ try:
     #add_user('123123123','romka', 200)
     # del_user('tg_id')
     # elo_change('noi4eg7', 20)
-    #leaderbords()
+    leaderbords()
     #my_elo('noi4eg7')
 
     # запрос SELECT 
