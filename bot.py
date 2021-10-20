@@ -13,6 +13,7 @@ TOKEN = "2028789368:AAGJaecJtmyQNu8wpd-zJyxnzpSz-SbPKh4"
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
 
+# тест мерджа
 
 @dp.message_handler(commands=['start'])
 async def send_start(msg: types.Message):
