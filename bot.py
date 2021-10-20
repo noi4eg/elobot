@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 # TODO спрятать токен в гитигнор
-TOKEN = "2028789368:AAGJaecJtmyQNu8wpd-zJyxnzpSz-SbPKh4"
+TOKEN = "2028789368:AAFATx6X4WgQpUP5n6d3MjoDao1h87eyLNE"
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
