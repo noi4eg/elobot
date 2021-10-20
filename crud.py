@@ -53,11 +53,12 @@ def leaderbords():
     leaders = cursor.execute('SELECT * from users ORDER BY elo DESC')
     end_str = ''
     place = 1
+    #print(leaders.fetchall())
     for item in leaders.fetchall():
-        end_str += str(place) + '. ' + item[1] + ' ' + str(item[2]) + '\n'
+        end_str += str(place) + '. ' + item[3] + ' ' + str(item[2]) + '\n'
         place += 1
 
-    # print (end_str)
+    #print (end_str)
     bd_close(conn)
     return end_str
 
@@ -78,11 +79,11 @@ try:
     # блок вызова функций удаления/добавления пользователя
     # TODO получать данные из вне
     #add_user('123123123','romka', 200)
-    # del_user('tg_id')
+    #del_user('320362842')
     # elo_change('noi4eg7', 20)
     leaderbords()
     #my_elo('noi4eg7')
-
+    pass
     # запрос SELECT 
     #users = cursor.execute("SELECT * FROM 'users'")
     # метод fetchall() вовзаращет совпадания из SELECT 
