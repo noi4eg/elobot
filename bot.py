@@ -51,8 +51,10 @@ async def send_elo(msg: types.Message):
 @dp.message_handler(content_types=['text'])
 async def send_messages(msg: types.Message):
     if msg.text.lower() == 'регистрация участника':
-        crud.add_user(str(msg.from_user.id), 200)
-        await msg.reply(text="Вы зарегестированы")
+        if crud.add_user(str(msg.from_user.id), msg.from_user.full_name, 200) == 'Поздравляю с регистрацией':
+            await msg.reply(text="Вы зарегестированы")
+        elif crud.add_user(str(msg.from_user.id), msg.from_user.full_name, 200) == 'Пользователь уже зарегистрирован':
+            await msg.reply(text="Пользователь уже зарегистрирован")
     elif msg.text.lower() == 'доска участников':
         await msg.reply(text=crud.leaderbords(), reply=False)
 
