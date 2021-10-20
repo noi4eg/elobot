@@ -13,11 +13,22 @@ def bd_close(conn):
 
 
 # функция добавления пользователя
-def add_user(tg_id, elo):
+def add_user(tg_id, tg_full_name, elo):
     cursor, conn = bd_start()
-    cursor.execute('INSERT INTO users (tg_id, elo) VALUES (?,?)', (tg_id, elo))
-    conn.commit()
-    bd_close(conn)
+    check_user = cursor.execute('SELECT * FROM users WHERE tg_id = ?',(tg_id,))
+    check_user = check_user.fetchall()
+    print(check_user)
+    if check_user == []:
+        cursor.execute('INSERT INTO users (tg_id, tg_name, elo) VALUES (?,?,?)', (tg_id, tg_full_name, elo))
+        conn.commit()
+        bd_close(conn)
+        print ('рега')
+        return 'Поздравляю с регистрацией'
+    else:
+        print('отказ')
+        return 'Пользователь уже зарегистрирован'
+    
+    
 
 
 # TODO проверка на наличие пользователя в базе
@@ -68,16 +79,16 @@ try:
 
     # блок вызова функций удаления/добавления пользователя
     # TODO получать данные из вне
-    # add_user('romka', 200)
+    #add_user('123123123','romka', 200)
     # del_user('tg_id')
     # elo_change('noi4eg7', 20)
-    leaderbords()
-    my_elo('noi4eg7')
+    #leaderbords()
+    #my_elo('noi4eg7')
 
     # запрос SELECT 
-    # users = cursor.execute("SELECT * FROM 'users'")
+    #users = cursor.execute("SELECT * FROM 'users'")
     # метод fetchall() вовзаращет совпадания из SELECT 
-    # print(users.fetchall())
+    #print(users.fetchall())
     # bd_close()
 except sqlite3.Error as error:
     print("Error", error)
