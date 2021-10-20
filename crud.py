@@ -13,20 +13,18 @@ def bd_close(conn):
 
 
 # функция добавления пользователя
-def add_user(tg_id, tg_full_name, elo):
+def add_user(tg_id, tg_full_name):
     cursor, conn = bd_start()
     check_user = cursor.execute('SELECT * FROM users WHERE tg_id = ?',(tg_id,))
     check_user = check_user.fetchall()
-    print(check_user)
+    elo = 200 #стартовый elo
     if check_user == []:
         cursor.execute('INSERT INTO users (tg_id, tg_name, elo) VALUES (?,?,?)', (tg_id, tg_full_name, elo))
         conn.commit()
         bd_close(conn)
-        print ('рега')
-        return 'Поздравляю с регистрацией'
+        return True
     else:
-        print('отказ')
-        return 'Пользователь уже зарегистрирован'
+        return False
     
     
 
