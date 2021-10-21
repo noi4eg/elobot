@@ -81,7 +81,7 @@ try:
     # TODO получать данные из вне
     #add_user('123123123','romka', 200)
     #del_user('320362842')
-    # elo_change('noi4eg7', 20)
+    #elo_change('320362842', 1400)
     #leaderbords()
     #my_elo('noi4eg7')
     pass
