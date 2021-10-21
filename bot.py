@@ -5,21 +5,28 @@ import crud
 from aiogram import Bot, types
 from aiogram.dispatcher import Dispatcher
 from aiogram.utils import executor
+import os 
+from sys import exit
 
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
-# TODO спрятать токен в гитигнор
-TOKEN = "2028789368:AAFATx6X4WgQpUP5n6d3MjoDao1h87eyLNE"
+TOKEN = None
+with open("token.txt") as f:
+    TOKEN = f.read().strip()
+
+#if not TOKEN:
+#    exit ('Error: где токен, бро?')
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
 
 
-# mainmenu
+# mainmenu (кнопки в чате)
 btnReg = KeyboardButton('Регистрация участника')
 btnLeaders = KeyboardButton('Доска участников')
-mainMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(btnReg, btnLeaders)
+btnFight = KeyboardButton('МАТЧ')
+mainMenu = ReplyKeyboardMarkup(resize_keyboard=True).add(btnReg, btnLeaders, btnFight)
 
 
 @dp.message_handler(commands=['start'])
@@ -57,7 +64,8 @@ async def send_messages(msg: types.Message):
             await msg.reply(text="Пользователь уже зарегистрирован")
     elif msg.text.lower() == 'доска участников':
         await msg.reply(text=crud.leaderbords(), reply=False)
-
+    elif msg.text.lower() == 'матч':
+        await msg.reply(text='в разработке', reply=False)
 
 
 def main():
