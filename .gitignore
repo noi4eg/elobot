@@ -1,3 +1,4 @@
-/virtelott
 # TODO .gitignore
+/virtelott
 token.txt
+.vscode

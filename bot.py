@@ -12,11 +12,13 @@ logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 TOKEN = None
-with open("token.txt") as f:
-    TOKEN = f.read().strip()
+try:
+    with open("token.txt") as f:
+        TOKEN = f.read().strip()
+except FileNotFoundError:
+    print ('Error: где токен, бро?')
+    raise SystemExit
 
-#if not TOKEN:
-#    exit ('Error: где токен, бро?')
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
