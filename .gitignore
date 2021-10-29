@@ -1,4 +1,4 @@
-# TODO .gitignore
-/virtelott
+.gitignore
+/venv_elobot
 token.txt
 .vscode
